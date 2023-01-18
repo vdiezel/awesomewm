@@ -51,6 +51,9 @@ end
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
 beautiful.init(theme_path)
 
+-- reduce icon size
+beautiful.notification_icon_size = 160
+
 local net_wired = net_widgets.indicator({ interfaces = { "eno1" } })
 
 for s = 1, screen.count() do
