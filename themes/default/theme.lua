@@ -30,7 +30,10 @@ theme.border_normal = "#000000"
 theme.border_focus  = '#777777'
 theme.border_marked = "#91231c"
 
+-- deactivate colors for taglist (handled via icon color)
 theme.taglist_bg_focus = theme.bg_normal
+theme.taglist_bg_urgent = theme.bg_normal
+
 theme.tasklist_bg_focus = theme.bg_normal
 theme.tasklist_fg_focus = '#689d6a'
 

@@ -4,6 +4,7 @@ local gears = require("gears")
 local gfs = gears.filesystem
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local naughty = require("naughty")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 ------------------------------------
@@ -35,6 +36,9 @@ local get_taglist = function(s)
 	local focus_icon = " "
 	local focus_color = "#689d6a"
 
+	local urgent_icon = " "
+	local urgent_color = "#B16286"
+
 	----------------------------------------------------------------------
 
 	-- Function to update the tags
@@ -43,6 +47,9 @@ local get_taglist = function(s)
 		if c3.selected then
 			tagicon.text = focus_icon
 			self.fg = focus_color
+        elseif c3.urgent then
+			tagicon.text = urgent_icon
+			self.fg = urgent_color
 		elseif #c3:clients() == 0 then
 			tagicon.text = empty_icon
 			self.fg = empty_color
@@ -80,6 +87,7 @@ local get_taglist = function(s)
 		},
 		buttons = taglist_buttons
 	}
+
 	return icon_taglist
 end
 
