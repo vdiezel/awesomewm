@@ -639,6 +639,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 awful.spawn.with_shell("xrandr --output HDMI-A-0 --mode 1920x1080 --rate 144") -- for my AOC
-awful.spawn.with_shell("xrandr --output DisplayPort-0 --mode 1920x1080 --rate 143.85") -- for my asus
-awful.spawn.with_shell("xsetwacom --set \"Wacom One by Wacom S Pen stylus\" MapToOutput 1920x1080+1920+0") -- for my asus
-awful.spawn.with_shell("xsetwacom --set \"Wacom Intuos Pro L Pen stylus\" MapToOutput 1920x1080+1920+0") -- for my asus
+awful.spawn.with_shell("xrandr --output DisplayPort-0 --mode 1920x1080 --rate 143.85 --left-of HDMI-A-0") -- for my asus
+awful.spawn.with_shell("xrandr --output DisplayPort-2 --mode 1920x1080 --rate 120.00 --right-of HDMI-A-0") -- for my second asus
+awful.spawn.with_shell("xsetwacom --set \"Wacom One by Wacom S Pen stylus\" MapToOutput 1920x1080+1920+0")
+awful.spawn.with_shell("xsetwacom --set \"Wacom Intuos Pro L Pen stylus\" MapToOutput 1920x1080+1920+0")
