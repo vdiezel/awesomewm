@@ -61,7 +61,7 @@ for s = 1, screen.count() do
 end
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
+terminal = "console"
 editor = "nvim" or os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -75,7 +75,7 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    -- awful.layout.suit.floating,
+    awful.layout.suit.floating,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
@@ -189,12 +189,12 @@ awful.screen.connect_for_each_screen(function(s)
     s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
-    -- s.mylayoutbox = awful.widget.layoutbox(s)
-    -- s.mylayoutbox:buttons(gears.table.join(
-    --                        awful.button({ }, 1, function () awful.layout.inc( 1) end),
-    --                        awful.button({ }, 3, function () awful.layout.inc(-1) end),
-    --                        awful.button({ }, 4, function () awful.layout.inc( 1) end),
-    --                        awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+     s.mylayoutbox = awful.widget.layoutbox(s)
+     s.mylayoutbox:buttons(gears.table.join(
+                            awful.button({ }, 1, function () awful.layout.inc( 1) end),
+                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
+                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
+                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
     s.mytaglist = require("custom_taglist")(s)
     --s.mytaglist = awful.widget.taglist {
@@ -280,7 +280,7 @@ awful.screen.connect_for_each_screen(function(s)
             net_wired,
             wibox.widget.systray(),
             mytextclock,
-            -- s.mylayoutbox,
+            s.mylayoutbox,
           },
           widget = wibox.container.margin,
           left = 12,
@@ -638,8 +638,9 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-awful.spawn.with_shell("xrandr --output HDMI-A-0 --mode 1920x1080 --rate 144") -- for my AOC
-awful.spawn.with_shell("xrandr --output DisplayPort-0 --mode 1920x1080 --rate 143.85 --left-of HDMI-A-0") -- for my asus
-awful.spawn.with_shell("xrandr --output DisplayPort-2 --mode 1920x1080 --rate 120.00 --right-of HDMI-A-0") -- for my second asus
+-- awful.spawn.with_shell("xrandr --output HDMI-A-0 --mode 1920x1080 --rate 144") -- for my AOC
+-- awful.spawn.with_shell("xrandr --output DisplayPort-0 --mode 1920x1080 --rate 143.85 --left-of HDMI-A-0") -- for my asus
+-- awful.spawn.with_shell("xrandr --output DisplayPort-2 --mode 1920x1080 --rate 120.00 --right-of HDMI-A-0") -- for my second asus
+awful.spawn.with_shell("xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-1 --off --output DisplayPort-2 --mode 2560x1440 --pos 3840x0 --rotate normal --output HDMI-A-0 --mode 1920x1080 --pos 1920x0 --rotate normal")
 awful.spawn.with_shell("xsetwacom --set \"Wacom One by Wacom S Pen stylus\" MapToOutput 1920x1080+1920+0")
 awful.spawn.with_shell("xsetwacom --set \"Wacom Intuos Pro L Pen stylus\" MapToOutput 1920x1080+1920+0")
