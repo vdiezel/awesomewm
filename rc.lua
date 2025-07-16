@@ -61,7 +61,7 @@ for s = 1, screen.count() do
 end
 
 -- This is used later as the default terminal and editor to run.
-terminal = "console"
+terminal = "kitty"
 editor = "nvim" or os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -183,7 +183,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table
     -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
-    awful.tag({ "  ", "  ", "  " }, s, awful.layout.layouts[1])
+    awful.tag({ "  ", "  ", "  ", "  " , "  ", "  "}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -203,7 +203,7 @@ awful.screen.connect_for_each_screen(function(s)
     --    buttons = taglist_buttons
     --}
 
-    -- Create a tasklist widget
+    -- Create a tasklist widgeth
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
@@ -641,6 +641,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- awful.spawn.with_shell("xrandr --output HDMI-A-0 --mode 1920x1080 --rate 144") -- for my AOC
 -- awful.spawn.with_shell("xrandr --output DisplayPort-0 --mode 1920x1080 --rate 143.85 --left-of HDMI-A-0") -- for my asus
 -- awful.spawn.with_shell("xrandr --output DisplayPort-2 --mode 1920x1080 --rate 120.00 --right-of HDMI-A-0") -- for my second asus
-awful.spawn.with_shell("xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-1 --off --output DisplayPort-2 --mode 2560x1440 --pos 3840x0 --rotate normal --output HDMI-A-0 --mode 1920x1080 --pos 1920x0 --rotate normal")
-awful.spawn.with_shell("xsetwacom --set \"Wacom One by Wacom S Pen stylus\" MapToOutput 1920x1080+1920+0")
-awful.spawn.with_shell("xsetwacom --set \"Wacom Intuos Pro L Pen stylus\" MapToOutput 1920x1080+1920+0")
+-- awful.spawn.with_shell("xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-1 --off --output DisplayPort-2 --mode 2560x1440 --pos 3840x0 --rotate normal --output HDMI-A-0 --mode 1920x1080 --pos 1920x0 --rotate normal")
+-- awful.spawn.with_shell("xsetwacom --set \"Wacom One by Wacom S Pen stylus\" MapToOutput 1920x1080+1920+0")
+-- awful.spawn.with_shell("xsetwacom --set \"Wacom Intuos Pro L Pen stylus\" MapToOutput 1920x1080+1920+0")
