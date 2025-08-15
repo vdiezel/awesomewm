@@ -20,6 +20,28 @@ local net_widgets = require("net_widgets")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local battery_path = "/sys/class/power_supply/BAT0/capacity"
+local battery_widget = wibox.widget {
+    widget = wibox.widget.textbox
+}
+
+-- Update function
+awful.widget.watch(
+    "cat " .. battery_path,
+    30, -- refresh every 30 seconds
+    function(widget, stdout)
+        local percentage = tonumber(stdout) or 0
+        local color = "#FFFFFF" -- default white
+        if percentage < 20 then
+            color = "#FF0000" -- red
+        elseif percentage < 50 then
+            color = "#FFA500" -- orange
+        end
+        widget.markup = string.format("<span foreground='%s'>🔋 %d%%</span>", color, percentage)
+    end,
+    battery_widget
+)
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -281,6 +303,7 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
+            battery_widget,
           },
           widget = wibox.container.margin,
           left = 12,
