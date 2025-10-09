@@ -202,7 +202,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Each screen has its own tag table
 	-- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
-	awful.tag({ "  ", "  ", "  " }, s, awful.layout.layouts[1])
+	awful.tag({ "  ", "  ", "  ", "  " }, s, awful.layout.layouts[1])
 
 	-- Create a promptbox for each screen
 	s.mypromptbox = awful.widget.prompt()
@@ -520,6 +520,10 @@ clientbuttons = gears.table.join(
 		awful.mouse.client.move(c)
 	end),
 	awful.button({ modkey }, 3, function(c)
+		c:emit_signal("request::activate", "mouse_click", { raise = true })
+		awful.mouse.client.resize(c)
+	end),
+	awful.button({ modkey }, 4, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 		awful.mouse.client.resize(c)
 	end)
